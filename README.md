@@ -13,7 +13,8 @@ The requester can still only reapprove once the trade is in NeedsReapproval
 
 Python 3.11+
 
-pip / venv
+pip 
+venv (optional)
 
 # 2) Install & run
 
