@@ -59,7 +59,7 @@ Unauthenticated; pass userId explicitly where needed.
 
 ## Submit Trade
 
-POST /api/trades/submit
+POST /api/trades/submit/
 
 {
   "userId": "user_001",
@@ -84,7 +84,7 @@ Response
 
 ## Approve
 
-POST /api/trades/1/approve
+POST /api/trades/1/approve/
 
 { "userId": "user_002" }
 
@@ -95,7 +95,7 @@ Response
 
 --Update
 
-PATCH /api/trades/1/update
+PATCH /api/trades/1/update/
 
 {
   "userId": "user_002",
@@ -109,7 +109,7 @@ Response
 
 ## Send to Execute
 
-POST /api/trades/1/send-to-execute
+POST /api/trades/1/send-to-execute/
 
 { "userId": "user_002" }
 
@@ -120,7 +120,7 @@ Response
 
 --Book
 
-POST /api/trades/1/book
+POST /api/trades/1/book/
 
 { "userId": "user_001", "strike": 1.24567 }
 
@@ -131,7 +131,7 @@ Response
 
 ## History
 
-GET /api/trades/1/history
+GET /api/trades/1/history/
 
 Response (truncated)
 
@@ -145,7 +145,7 @@ Response (truncated)
 
 ## Diff Versions
 
-POST /api/trades/1/diff
+POST /api/trades/1/diff/
 
 { "fromVersion": 1, "toVersion": 2 }
 
@@ -156,7 +156,7 @@ Response
 
 ## Version Snapshot
 
-GET /api/trades/1/versions/1
+GET /api/trades/1/versions/1/
 
 Response (truncated)
 
@@ -171,7 +171,7 @@ Response (truncated)
 
 ## Scenario 1- Submit -> Book:
 
-### Endpoint: POST /api/trades/submit
+### Endpoint: POST /api/trades/submit/
 
 --Input:
 
@@ -194,19 +194,19 @@ Response (truncated)
 
 { "id": 1, "state": "PendingApproval" }
 
-### Endpoint: POST /api/trades/1/approve
+### Endpoint: POST /api/trades/1/approve/
 
 --Input: { "userId": "user_002" }
 
 --Output: { "id": 1, "state": "Approved" }
 
-### Endpoint: POST /api/trades/1/send-to-execute
+### Endpoint: POST /api/trades/1/send-to-execute/
 
 --Input: { "userId": "user_002" }
 
 --Output: { "id": 1, "state": "SentToCounterparty" }
 
-### Endpoint: POST /api/trades/1/book
+### Endpoint: POST /api/trades/1/book/
 
 --Input: { "userId": "user_001", "strike": 1.24567 }
 
@@ -214,13 +214,13 @@ Response (truncated)
 
 ## Scenario 2- Trade updated before approval:
 
-### Endpoint: POST /api/trades/submit
+### Endpoint: POST /api/trades/submit/
 
 --Input: { ...same as Scenario 1... }
 
 --Output: { "id": 2, "state": "PendingApproval" }
 
-### Endpoint: PATCH /api/trades/2/update
+### Endpoint: PATCH /api/trades/2/update/
 
 --Input:
 
@@ -233,19 +233,19 @@ Response (truncated)
 
 { "id": 2, "state": "NeedsReapproval" }
 
-### Endpoint: POST /api/trades/2/approve
+### Endpoint: POST /api/trades/2/approve/
 
 --Input: { "userId": "user_001" }
 
 --Output: { "id": 2, "state": "Approved" }
 
-### Endpoint: POST /api/trades/2/send-to-execute
+### Endpoint: POST /api/trades/2/send-to-execute/
 
 --Input: { "userId": "user_002" }
 
 --Output: { "id": 2, "state": "SentToCounterparty" }
 
-### Endpoint: POST /api/trades/2/book
+### Endpoint: POST /api/trades/2/book/
 
 --Input: { "userId": "user_001", "strike": 1.14567 }
 
@@ -253,19 +253,19 @@ Response (truncated)
 
 ## Scenario 3-cancel:
 
-### Endpoint: POST /api/trades/submit
+### Endpoint: POST /api/trades/submit/
 
 --Input: { ...same as Scenario 1... }
 
 --Output: { "id": 3, "state": "PendingApproval" }
 
-### Endpoint: POST /api/trades/3/approve
+### Endpoint: POST /api/trades/3/approve/
 
 --Input: { "userId": "user_002" }
 
 --Output: { "id": 3, "state": "Approved" }
 
-### Endpoint: POST /api/trades/3/cancel
+### Endpoint: POST /api/trades/3/cancel/
 
 --Input: { "userId": "user_001" }
 
@@ -273,7 +273,7 @@ Response (truncated)
 
 ## Scenario 4 – Multi-update before Reapproval
 
-### Endpoint: PATCH /api/trades/2/update
+### Endpoint: PATCH /api/trades/2/update/
 
 --Input:
 
@@ -286,7 +286,7 @@ Response (truncated)
 
 { "id": 2, "state": "NeedsReapproval" }
 
-### Endpoint: PATCH /api/trades/2/update
+### Endpoint: PATCH /api/trades/2/update/
 
 --Input:
 
@@ -299,7 +299,7 @@ Response (truncated)
 
 { "id": 2, "state": "NeedsReapproval" }
 
-### Endpoint: POST /api/trades/2/approve
+### Endpoint: POST /api/trades/2/approve/
 
 --Input:
 
