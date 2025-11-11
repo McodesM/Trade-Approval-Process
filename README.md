@@ -16,22 +16,22 @@ Python 3.11+
 
 pip / venv
 
-2) Install & run
+# 2) Install & run
 
 # (optional) create venv
 python -m venv .venv
 . .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-# install
+## install
 pip install -r requirements.txt
 
-# migrate DB (SQLite)
+## migrate DB (SQLite)
 python manage.py makemigrations
 python manage.py migrate
 
-# run server
+## run server
 python manage.py runserver
-# API at http://127.0.0.1:8000/api/
+## API at http://127.0.0.1:8000/api/
 
 3) API Overview
 
