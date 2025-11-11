@@ -57,7 +57,7 @@ Base URL prefix: /api/
 All requests are JSON; all responses are JSON.
 Unauthenticated; pass userId explicitly where needed.
 
---Submit Trade
+## Submit Trade
 
 POST /api/trades/submit
 
@@ -82,7 +82,7 @@ Response
 
 { "id": 1, "state": "PendingApproval" }
 
---Approve
+## Approve
 
 POST /api/trades/1/approve
 
@@ -107,7 +107,7 @@ Response
 
 { "id": 1, "state": "NeedsReapproval" }
 
---Send to Execute
+## Send to Execute
 
 POST /api/trades/1/send-to-execute
 
@@ -129,7 +129,7 @@ Response
 
 { "id": 1, "state": "Executed", "strike": "1.245670" }
 
---History
+## History
 
 GET /api/trades/1/history
 
@@ -143,7 +143,7 @@ Response (truncated)
   ]
 }
 
---Diff Versions
+## Diff Versions
 
 POST /api/trades/1/diff
 
@@ -154,7 +154,7 @@ Response
 
 { "diff": { "notional_amount": ["5000000.00", "2000000.00"] } }
 
---Version Snapshot
+## Version Snapshot
 
 GET /api/trades/1/versions/1
 
@@ -167,9 +167,9 @@ Response (truncated)
   "snapshot": { "notional_amount": "5000000.00", "direction": "BUY" }
 }
 
-5) Scenarios
+# 5) Scenarios
 
-Scenario 1- Submit -> Book:
+## Scenario 1- Submit -> Book:
 
 --Endpoint: POST /api/trades/submit
 --Input:
@@ -203,7 +203,7 @@ Scenario 1- Submit -> Book:
 --Input: { "userId": "user_001", "strike": 1.24567 }
 --Output: { "id": 1, "state": "Executed", "strike": "1.245670" }
 
-Scenario 2- Trade updated before approval:
+## Scenario 2- Trade updated before approval:
 
 --Endpoint: POST /api/trades/submit
 --Input: { ...same as Scenario 1... }
@@ -230,7 +230,7 @@ Scenario 2- Trade updated before approval:
 --Input: { "userId": "user_001", "strike": 1.14567 }
 --Output: { "id": 2, "state": "Executed", "strike": "1.145670" }
 
-Scenario 3-cancel:
+## Scenario 3-cancel:
 
 --Endpoint: POST /api/trades/submit
 --Input: { ...same as Scenario 1... }
@@ -244,7 +244,7 @@ Scenario 3-cancel:
 --Input: { "userId": "user_001" }
 --Output: { "id": 3, "state": "Cancelled" }
 
-Scenario 4 – Multi-update (Reupdate) before Reapproval
+## Scenario 4 – Multi-update before Reapproval
 
 --Endpoint: PATCH /api/trades/2/update
 --Input:
