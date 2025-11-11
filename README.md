@@ -39,6 +39,7 @@ pip install -r requirements.txt
 
 ### migrate DB (SQLite)
 python manage.py makemigrations
+
 python manage.py migrate
 
 ### run tests
