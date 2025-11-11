@@ -1,12 +1,21 @@
-Design Choices:
--The approver is assigned implicitly: the first non-requester to perform an Update (or Approve) becomes the trade’s approver. This matches the example where the approver updates before reapproval, without adding a separate assignment endpoint.
--Views are thin. business logic & state transitions live in services/ .
--Operations and changes made on dtos of models.
+### Design Choices:
+Implicit Approver Assignment: The approver is not manually assigned. The first non-requester who performs an Update or Approve action automatically becomes the trade’s approver. This matches the example scenario where the approver makes an edit before final approval, avoiding the need for a dedicated “assign approver” endpoint.
 
-Enhancement:
+Thin Views, Rich Services: The API viewset layer is deliberately kept minimal, only handling request parsing, validation, and response formatting.
+All business logic, permission checks, and state transitions are kept in the services/ layer (trade_workflow.py, use_cases.py).
+This separation keeps the system modular, testable, and easy to extend.
+
+DTO-Centric Workflow: All operations are applied to immutable TradeDTO (Data Transfer Objects) rather than the ORM models directly.
+This isolates domain logic from persistence concerns and simplifies testing and reasoning about transitions.
+
+No User Table: Explicit User IDs:
+User identity is passed explicitly via userId in the request body, rather than being derived from Django’s authentication system.
+This design aligns with the brief, which only specifies user IDs in requests and examples, and keeps the scope focused on workflow logic rather than authentication.
+
+### Enhancement:
 Extended the workflow to allow multiple successive updates while in the NeedsReapproval state.
 This reflects realistic approval cycles, where an approver may make several adjustments before the requester provides final reapproval.
-The requester can still only reapprove once the trade is in NeedsReapproval
+The requester can still only reapprove once the trade is in NeedsReapproval state.
 
 
 # 1) Setup
@@ -309,3 +318,7 @@ Response (truncated)
 --Output:
 
 { "id": 2, "state": "Approved" }
+
+## Note:
+
+AI tools were used for test and model boilerplate setup, documentation formatting, and refining phrasing in the README. All system design decisions, workflow logic, and state transition rules were independently reasoned, implemented, and validated by me.
