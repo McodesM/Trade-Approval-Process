@@ -286,7 +286,7 @@ Response (truncated)
 
 { "id": 2, "state": "NeedsReapproval" }
 
---Endpoint: PATCH /api/trades/2/update
+#### Endpoint: PATCH /api/trades/2/update
 
 --Input:
 
@@ -299,7 +299,7 @@ Response (truncated)
 
 { "id": 2, "state": "NeedsReapproval" }
 
---Endpoint: POST /api/trades/2/approve
+#### Endpoint: POST /api/trades/2/approve
 
 --Input:
 
