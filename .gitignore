@@ -1,0 +1,13 @@
+
+__pycache__/
+*.py[cod]
+
+db.sqlite3
+venv/
+env/
+.venv/
+.env
+ENV/
+
+trades_approval/migrations/*
+
