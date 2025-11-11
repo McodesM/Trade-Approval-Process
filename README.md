@@ -41,9 +41,13 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 
+### run tests
+python manage.py test
+
 ### run server
 python manage.py runserver
 ### API at http://127.0.0.1:8000/api/
+
 
 # 3) API Overview
 
