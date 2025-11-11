@@ -171,13 +171,13 @@ Response
 
 ## Version Snapshot
 
-GET /api/trades/1/versions/1/
+GET /api/trades/1/versions/2/
 
 Response (truncated)
 
 {
   "tradeId": 1,
-  "version": 1,
+  "version": 2,
   "state": "PendingApproval",
   "snapshot": { "notional_amount": "5000000.00", "direction": "BUY" }
 }
